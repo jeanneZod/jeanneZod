@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div class="breadcrumbs">
+    <a class="pl-1" routerLink="/store"><span class="oi oi-home"></span> Accueil</a> >
+    <span *ngIf="product" class="pl-1">{{product.name | camelCase}}</span>
+</div>
+<div *ngIf="product" class="wrapper">
+    <div class="row">
+        <div class="col-md-6 col-12 imgWrap">
+                <img *ngIf="product.image1 != undefined" [src]="imgSrc(product.image1)" class="img" />
+        </div>
+        <div class="col-md-6 col-12 txtWrap">
+            <h4>{{product.name}}</h4>
+            <p>{{product.description}}</p>
+
+            <p><strong>Disponibilité:
+                <span *ngIf="product.available>0" class="productAvail">En stock</span>
+                <span *ngIf="product.available===0" class="productNotAvail">En pré-commande</span>
+                </strong></p>
+            <p class="productPrice">Prix du produit: {{product.price | currency:"EUR":"symbol"}}</p>
+            <button type="button" class="addToCart" (click)="addToCart(product)" routerLink="/cart">Ajouter au panier</button>
+        </div>
+    </div>
+</div>

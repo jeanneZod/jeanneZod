@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div class="breadcrumbs">
+    <a class="pl-1" routerLink="/store"><span class="oi oi-home"></span> Accueil</a> > <a class="pl-1" routerLink="/editor"> Administration</a> > <a class="pl-1">Edition commande</a>
+</div>
+<div class="wrapper">
+    <div class="row">
+        <div *ngIf="orderId" class="titleCart col-12">Commande courante: {{orderId}}</div>
+        <div>
+                <button class="btn backToList mt-2" routerLink="/editor">
+                    Retour à la liste</button>
+                    <button class="btn editItem mt-2" (click)="seeOrder(orderId)"><span class="oi oi-caret-bottom"></span>Voir et éditer la commande</button>
+            </div>
+    </div>
+    <div class="row" *ngIf="openBoard">
+        <div class="col-7 p-3">
+            <div class="itemEditorLine">
+                <span class="labelLine"> Date de la commande:</span> {{order.date | date: 'dd-MM-yyyy HH:mm'}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">  Client ID:</span> <span class="cursor blue underline" (click)="showClient(order.client)">{{order.client._id}}</span>
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine"> Total de la commande:</span> {{order.cart.cartPrice}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine"> Nombre d'articles: </span>{{order.cart.itemCount}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine"> Destination de la commande:</span> {{order.client.country}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Payement effectué :</span>
+                <input type="checkbox" name="payed" [(ngModel)]="order.payed" />
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Détail du payement:</span>
+                <textarea name="payement " [(ngModel)]="order.payement "></textarea>
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Commande envoyé :</span>
+                <input type="checkbox" name="shipped" [(ngModel)]="order.shipped" />
+            </div>
+            <div *ngIf="messageSuccess" class="col-6 text-right"><span class="text-success font-weight-bold">{{messageSuccess}}</span></div>
+
+            <button type="submit " class="btn btn-primary mt-2" (click)="save(order) ">
+                    Sauvegarder
+                </button>
+            <button class="btn  mt-2" routerLink="/editor">
+                Retour à la liste</button>
+        </div>
+
+        <div *ngIf="clientBoard" class="col-5 p-3 bgGrey">
+            <h5 class="blue">Client :</h5>
+            <div class="itemEditorLine">
+                <span class="labelLine">Nom du client:</span> {{client.name}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Prénom du client:</span> {{client.surname}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Adresse:</span> {{client.address}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Ville:</span> {{client.city}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Code postal:</span> {{client.zip}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Pays:</span> {{client.country}}
+            </div>
+            <div class="itemEditorLine">
+                <span class="labelLine">Commandes passées:</span> <span class="cursor blue underline" (click)="showClientOrders(order.client._id)">Voir les commandes</span>
+            </div>
+            <div *ngIf="clientOrders">
+                <div class="itemEditorLine" *ngFor="let clientOrder of clientOrders; let i = index">
+                    <span class="labelLine">Commande N {{i+1}}:</span> <a class="cursor blue underline" [routerLink]="[ '/edit/order'] " [queryParams]="{id: clientOrder._id}" (click)="getNewOrder()">{{clientOrder._id}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

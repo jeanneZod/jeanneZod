@@ -1,0 +1,35 @@
+<app-header></app-header>
+<div class="breadcrumbs">
+    <a class="pl-1" routerLink="/store"><span class="oi oi-home"></span> Accueil</a> > <a class="pl-1">Connexion</a>
+</div>
+<div class="wrapper">
+    <div class="row">
+        <div class="titleCart col-12">Connexion</div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-5 col-12">
+            <span class="headers">Vous avez un compte?</span>
+            <form novalidate #form="ngForm">
+                <div class="form-group row mt-4">
+                    <label class="col-md-6 col-form-label" for="email">Votre email:</label>
+                    <div class="col-md-6"><input type="text" [(ngModel)]="client.email" #email="ngModel" name="email" class=" email form-control form-control-sm" required placeholder="Votre nom"></div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-6 col-form-label" for="password">Votre mot de passe:</label>
+                    <div class="col-md-6"><input type="password" class="form-control password form-control-sm" [(ngModel)]="client.password" required placeholder="Votre mot de passe" #password="ngModel" name="password"></div>
+                </div>
+                <div class="form-group row mt-2">
+                    <div class="col-12"><button type="button" class="btn btn-outline-primary" (click)="submitProfile(client)">Se connecter</button></div>
+                </div>
+            </form>
+            <div *ngIf="errorMessage != null" class="errorMessage">{{errorMessage}}</div>
+        </div>
+        <div class="col-md-2 col-12 mt-sm-3 mt-md-1 mt-lg-0 interColsConnexion"><span class="d-sm-none d-md-block"></span></div>
+        <div class="col-md-5 col-12">
+            <span class="headers">Vous etes un nouveau utilisateur?</span>
+            <div class="row mt-4">
+                <button type="button" class="btn" [ngClass]="errorMessage != null ? 'blinking btn-outline-primary':'btn-outline-primary' " (click)="goToNewClient()">Créer un nouveau compte</button>
+            </div>
+        </div>
+    </div>
+</div>

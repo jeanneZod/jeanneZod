@@ -1,0 +1,8 @@
+<div class="cartSummary align-self-end d-flex">
+    <button [disabled]="cart.itemCount == 0" routerLink="/cart">
+        <i class="oi oi-cart"></i>
+    </button>
+    <span class="articlesNumber">
+            {{ cart.itemCount }}
+    </span>
+</div>

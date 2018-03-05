@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div class="breadcrumbs">
+    <a class="pl-1" routerLink="/store"><span class="oi oi-home"></span> Accueil</a> > <a class="pl-1">Administration</a>
+</div>
+<div class="wrapper">
+    <div class="row">
+        <div class="titleCart col-12">Connexion</div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-8 col-12">
+            <form novalidate #form="ngForm">
+                <div class="form-group row mt-4">
+                    <label class="col-md-6 col-form-label" for="email">Votre email:</label>
+                    <div class="col-md-6"><input type="text" [(ngModel)]="client.email" name="email" class="form-control form-control-sm" required placeholder="Votre nom"></div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-6 col-form-label" for="password">Votre mot de passe:</label>
+                    <div class="col-md-6"><input type="password" class="form-control form-control-sm" [(ngModel)]="client.password" required placeholder="Votre mot de passe" name="password"></div>
+                </div>
+                <div class="form-group row mt-2">
+                    <div class="col-12"><button type="button" class="btn btn-outline-primary" (click)="submitAdmin(client)">Se connecter</button></div>
+                </div>
+            </form>
+            <div *ngIf="errorMessage != null" class="errorMessage">{{errorMessage}}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="breadcrumbs">
+    <a class="pl-1" routerLink="/store"><span class="oi oi-home"></span> Accueil</a> > <a class="pl-1"> Profile</a>
+</div>
+
+
+<div class="wrapper">
+    <div class="row">
+        <div class="titleCart col-12">Votre profile:</div>
+    </div>
+    <div class="row">
+        <form *ngIf="client" novalidate #form="ngForm">
+
+            <div class="form-group row">
+                <label class="col-md-6 col-form-label" for="name">Votre nom:</label>
+                <div class="col-md-6"><input class="form-control form-control-sm" type="text" name="name" [(ngModel)]="client.name" /></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6 col-form-label" for="surname">Votre prénom:</label>
+                <div class="col-md-6"><input class="form-control form-control-sm" type="text" name="surname" [(ngModel)]="client.surname" /></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6 col-form-label" for="email">Votre email:</label>
+                <div class="col-md-6"><input class="form-control form-control-sm" type="text" name="email" [(ngModel)]="client.email" /></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6 col-form-label" for="password">Votre mot de passe:</label>
+                <div class="col-md-6"><input class="form-control form-control-sm" type="password" name="password" [(ngModel)]="client.password" /></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6 col-form-label" for="address">Votre adresse:</label>
+                <div class="col-md-6"><input class="form-control form-control-sm" type="text" name="address" [(ngModel)]="client.address" /></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6 col-form-label" for="city">La ville:</label>
+                <div class="col-md-6"><input class="form-control form-control-sm" type="text" name="city" [(ngModel)]="client.city" /></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6 col-form-label" for="zip">Le code postal:</label>
+                <div class="col-md-6"><input class="form-control form-control-sm" type="text" name="zip" [(ngModel)]="client.zip" /></div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-6 col-form-label" for="country">Le pays:</label>
+                <div class="col-md-6"><input class="form-control form-control-sm" type="text" name="country" [(ngModel)]="client.country" /></div>
+            </div>
+
+            <div class="form-group row mt-2">
+                <div class="col-6"><button *ngIf="activateStoreButton == true" type="button" class="btn btn-primary" (click)="goToShop()">Continuer le shopping</button><button type="button" class="btn btn-outline-primary" (click)="submitProfile(client)">Valider votre profile</button></div>
+                <div *ngIf="messageSuccess" class="col-6 text-right"><span class="text-success font-weight-bold">{{messageSuccess}}</span></div>
+                <div *ngIf="welcomeMessage" class="col-6 text-right"><span class="text-success font-weight-bold">{{welcomeMessage}}</span></div>
+
+            </div>
+        </form>
+    </div>
+</div>

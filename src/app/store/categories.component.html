@@ -1,0 +1,10 @@
+<div class="categoryWrapper">
+    <span class="categoryChoice mt-0 cursor" data-toggle="collapse" data-target="#categoryContent" aria-controls="categoryContent" aria-expanded="false" aria-label="Toggle categories">Catégories</span>
+
+    <div [ngClass]="{show: !this.deviceDetect.isMobile()}" class="collapse navbar-collapse mt-3" id="categoryContent">
+        <ul>
+            <li *ngFor="let cat of categories"><span class="categoryName" (click)="sortProducts(cat, event)">{{cat}}</span></li>
+            <li><span (click)="sortProducts()" class="categoryName">Tout voir</span></li>
+        </ul>
+    </div>
+</div>

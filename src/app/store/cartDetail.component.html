@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div class="breadcrumbs">
+    <a class="pl-1" routerLink="/store"><span class="oi oi-home"></span> Accueil</a> > <a class="pl-1">Panier</a>
+</div>
+<div class="wrapper">
+    <div *ngIf="cart.lines.length>0">
+        <div class="row">
+            <div class="titleCart col-12">Votre panier</div>
+        </div>
+
+        <div class="row headers">
+            <div class="col-6">
+                <span>Votre produit:</span>
+            </div>
+            <div class="col-2">
+                <span>Prix unitaire:</span>
+            </div>
+            <div class="col-2">
+                <span>Quantité:</span>
+            </div>
+            <div class="col-2">
+                <span>Prix total:</span>
+            </div>
+        </div>
+        <div class="row cartRow" *ngFor="let line of cart.lines">
+            <div class="col-2">
+                    <img *ngIf="line.product.image1 != undefined" [src]="imgSrc(line.product.image1)" class="img" />
+            </div>
+            <div class="col-4">
+                <span>{{line.product.name | camelCase}}</span>
+            </div>
+            <div class="col-2">
+                <span>{{line.product.price | currency:"EUR"}}</span>
+            </div>
+            <div class="col-2">
+                <input type="number" [value]="line.quantity" (change)="cart.updateQuantity(line.product,$event.target.value)" />
+                <span class="removeCartLine" (click)="removeLine(line.product.id)">Supprimer</span>
+            </div>
+            <div class="col-2">
+                <span>{{line.lineTotal | currency:"EUR"}}</span>
+            </div>
+        </div>
+        <div class="row totalCart">
+            <div class="col-6 titleCart pt-2 text-right">
+                <span>TOTAL</span>
+            </div>
+            <div class="col-3 pt-2 text-right">
+                <span>Total d'articles: {{cart.itemCount}}</span>
+            </div>
+            <div class="col-3 pt-2 text-right">
+                <span>Total à régler: {{cart.cartPrice | currency:"EUR"}}</span>
+                <button type="button" class="addToCart" (click)="goToPayment(cart)">Payement</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="cart.lines.length===0">
+        <div class="col titleCart">
+            <span>Votre panier est vide</span>
+        </div>
+    </div>
+
+</div>

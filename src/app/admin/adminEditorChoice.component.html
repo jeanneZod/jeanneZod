@@ -1,0 +1,56 @@
+<app-adminProducts-editor>xoxox</app-adminProducts-editor>
+
+<div *ngIf="!ordersList && !productsList">
+    <span style="font-size:1.2rem">Merci de choisir une des catégories pour commencer le travail</span>
+</div>
+<div *ngIf="ordersList | async">
+    <div *ngIf="(ordersList | async) !=null ">
+        <h4>Total COMMANDES: {{ords.length}}</h4>
+    </div>
+    <div *ngFor="let order of ordersList | async" class="border border-secondary p-1 mb-2 rounded ">
+        <div>
+            <b>Numéro commande:</b> {{order._id}}</div>
+        <div>
+            <b>Date: </b>{{order.date | date:'dd-MM-yyyy HH:mm'}}</div>
+        <div>
+            <b>Client ID: </b>{{order.client._id}} </div>
+        <div>
+            <b>Total commande: </b>{{order.cart.cartPrice}}</div>
+        <div>
+            <b>Nombre d'articles: </b>{{order.cart.itemCount}}</div>
+        <div>
+            <b>Payé: </b>
+            <span *ngIf="order.payed" class="oi oi-check green"></span>
+            <span *ngIf="!order.payed">Non</span>
+        </div>
+        <div>
+            <b>Expédié:</b>
+            <span *ngIf="order.shipped" class="oi oi-check green"></span>
+            <span *ngIf="!order.shipped">Non</span>
+        </div>
+        <div *ngIf="order.modified">
+            Statut de commande mis à jour: {{order.modified}}
+        </div>
+        <div>
+            <a class="btn btn-primary btn-sm mt-2" [routerLink]="[ '/edit/order'] " [queryParams]="{id: order._id}">Modifier</a>
+        </div>
+    </div>
+</div>
+<div *ngIf="productsList | async ">
+    <div *ngIf="(productsList | async) != null ">
+        <h4>Total PRODUITS: {{prods.length}}</h4>
+    </div>
+    <div>
+        <a class="btn btn-primary btn-sm mt-2 mb-2 ml-auto" [routerLink]="[ '/edit/product'] " [queryParams]="{edit: 'create'}">
+            <span class="oi oi-plus"></span>&nbsp;Ajouter un nouveau produit</a>
+    </div>
+    <div *ngFor="let product of productsList | async" class="border border-secondary p-1 mb-2 rounded ">
+        <div>Nom: {{product.name}}</div>
+        <div>Categorie: {{product.category}}</div>
+        <div>Description: {{product.description}}</div>
+        <div>
+            <a class="btn btn-primary btn-sm mt-2" [routerLink]="[ '/edit/product'] " [queryParams]="{id: product._id, edit: 'edit'}">
+                <span class="oi oi-pencil"></span>&nbsp;Modifier</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<app-header></app-header>
+<div class="breadcrumbs">
+    <a class="pl-1" routerLink="/store"><span class="oi oi-home"></span> Accueil</a> > <a class="pl-1" routerLink="/cart"> Panier</a> > <a class="pl-1"> Checkout</a>
+</div>
+<div class="wrapper" *ngIf="client">
+    <div *ngIf="!orderConfirmed">
+        <div class="row">
+            <div class="titleCart col-12">Merci de vérifier vos informations</div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-12 labelCheck">
+                Votre nom:
+            </div>
+            <div class="col-md-6 col-12">{{client.name}}</div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-12 labelCheck">
+                Votre prénom:
+            </div>
+            <div class="col-md-6 col-12">{{client.surname}}</div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-12 labelCheck">
+                Votre email:
+            </div>
+            <div class="col-md-6 col-12">{{client.email}}</div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-12 labelCheck">
+                Votre adresse:
+            </div>
+            <div class="col-md-6 col-12">{{client.address}}</div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-12 labelCheck">
+                Ville:
+            </div>
+            <div class="col-md-6 col-12">{{client.city}}</div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-12 labelCheck">
+                Code postal:
+            </div>
+            <div class="col-md-6 col-12">{{client.zip}}</div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-4 col-12 labelCheck">
+                Pays:
+            </div>
+            <div class="col-md-6 col-12">{{client.country}}</div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-outline-primary mt-2" routerLink="/profile">Modifier votre profil</button>
+                <button type="button" class="btn btn-primary mt-2" (click)="submitCheckout()">Valider votre adresse</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="orderConfirmed" class="row">
+        <div class="confirmationOrder col-12">
+            <p>Votre demande a bien été prise en compte.</p>
+            <p>Nous vous remercions de votre confiance. Dès l'envoi de votre colis, un email de confirmation vous sera envoyé.</p>
+
+        </div>
+    </div>
+</div>

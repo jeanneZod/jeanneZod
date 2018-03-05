@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="breadcrumbs">
+    <a class="pl-1" routerLink="/store"><span class="oi oi-home"></span> Accueil</a>
+</div>
+<div class="wrapper">
+    <div class="row">
+        <div class="col-md-3">
+            <app-categories (changeCategory)="changeCat($event)"></app-categories>
+        </div>
+        <div class="listWrapper col-md-9">
+
+            <div class=" ul_wrap ">
+                <div *ngFor="let prod of products" class="productItem">
+                    <a class="wrapperImg " [routerLink]="[ '/product'] " [queryParams]="{id: prod._id} ">
+
+                        <img *ngIf="prod.images != undefined && prod.image1 != undefined" [src]="imgSrc(prod.image1)" class="img" />
+                        <div class="description ">
+                            <p class="productName ">{{prod.name}}</p>
+                            <p class="productPrice ">Prix: {{prod.price | currency:"EUR ":"symbol "}}</p>
+                            <p class="productAvail " *ngIf="prod.available>5">Produit disponible</p>
+                            <p class="productAvail" *ngIf="prod.available>0 && prod.available <=5">En stock: {{prod.available}}</p>
+                            <p class="productNotAvail" *ngIf="prod.available==0">Pré-commande</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+            <div *ngIf="pageNumbers.length>1" class="text-right">
+                <span>Pages:&nbsp;</span> <button type="button" *ngFor="let page of pageNumbers; let i = index" [class.disabled]="pageNumbers[i]===1" class="btn btn-outline-primary btn-sm mr-1 pageNumber" (click)="changePage(page)">{{page}}</button>
+            </div>
+        </div>
+    </div>
+</div>
