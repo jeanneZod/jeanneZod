@@ -12,15 +12,16 @@
         <div class="col-md-3 mb-4">
             <ul>
                 <li class="categoryAdmin">
-                    <span id="ordersListBtn" routerLink="/editor/products">Voir les commandes</span>
+                    <a  id="ordersListBtn" routerLink="/editor/orders" routerLinkActive="active">Voir les commandes</a>
                 </li>
                 <li class="categoryAdmin">
-                    <span id="productsListBtn" routerLink="/editor/products">Voir les produits</span>
+                    <a id="productsListBtn" routerLink="/editor/products" routerLinkActive="active">Voir les produits</a>
                 </li>
             </ul>
         </div>
         <div class="col-md-9 ">
-     
+                
+            <router-outlet>xxx</router-outlet>
         </div>
     </div>
 </div>

@@ -48,16 +48,19 @@ export class AdminEditProductComponent  implements OnInit{
          }
 
          ngOnInit(){
-            this.authenticate.getProduct(this.productId).subscribe(prd => {
-                this.product = prd;
-                this.imgSrcs = [];
-                if(this.product.images){
-                    this.images = this.product.images;
-                    this.images.map(im => {
-                        this.getPhoto(im);
-                    })
-                }
-            });      
+             if (this.edit === true){
+                this.authenticate.getProduct(this.productId).subscribe(prd => {
+                    this.product = prd;
+                    this.imgSrcs = [];
+                    if(this.product.images){
+                        this.images = this.product.images;
+                        this.images.map(im => {
+                            this.getPhoto(im);
+                        })
+                    }
+                });      
+             }
+            
 
         }
 // RETOUR A LA LISTE DE PRODUITS

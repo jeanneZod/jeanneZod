@@ -18,24 +18,19 @@ import {getOrdersComponent} from './getOrders.component';
     templateUrl: './adminEditor.component.html'
 })
 export class AdminEditorComponent {
-ordersList: Observable<Order[]> ;
-productsList: Observable<Product[]> ;
-prods:Product[];
-ords: Order[];
+openboard: boolean;
 
     constructor(private data: StaticProducts,
         public cart: Cart, private router: Router,
         private auth: AuthService,
         private authenticate: RestDataSource,
         public client: Client,
-        private order: Order) {}
+        private order: Order) {
+           this.openboard = false;
+        }
 
        
-        goToOrders(){
-            this.router.navigateByUrl('editor/products');
-
-        }
-        getProducts(){
+        /*getProducts(){
             this.ordersList = null;
             this.toggleClass();
             if (this.client.connect === true && this.client.access === true) {
@@ -62,7 +57,7 @@ ords: Order[];
             const span = <HTMLElement>event.target;
             const li = span.parentElement;
             li.classList.add('active');
-        }
+        }*/
 
 
 

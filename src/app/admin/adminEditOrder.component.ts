@@ -15,7 +15,6 @@ import { DatePipe } from '@angular/common';
 })
 export class AdminEditOrderComponent {
     private orderId: number = null;
-    openBoard = false;
     shipped: string = null;
     messageSuccess = null;
     clientBoard = false;
@@ -33,11 +32,13 @@ export class AdminEditOrderComponent {
                 });
          }
 
+        ngOnInit(){
+            this.authenticate.getOrder(this.orderId).subscribe(ord => {
+                this.order = ord;
+            });      
 
-    seeOrder(id) {
-        this.authenticate.getOrder(id).subscribe(ord => this.order = ord);
-        this.openBoard = true;
-    }
+        }
+
     save(order) {
         const d = new Date();
         const dTime = d.toLocaleTimeString();
@@ -62,7 +63,6 @@ export class AdminEditOrderComponent {
     }
     getNewOrder() {
         this.clientBoard = false;
-        this.openBoard = false;
     }
 }
 

@@ -7,10 +7,10 @@
 </div>
 <div class="wrapper">
     <div class="row">
-        <div *ngIf="productId" class="titleCart col-12">Produit courant: {{productId}}</div>
+        <div *ngIf="productId && edit == true" class="titleCart col-12">Produit courant: {{productId}}</div>
         <div class="border-bottom border-light">
-            <button class="btn backToList m-2" (click)="returnProductList()">
-                Retour à la liste</button>
+            <button class="btn backToList m-2" routerLink="/editor/products">
+                <span class="oi oi-caret-left"></span> Retour à la liste</button>
 
         </div>
     </div>

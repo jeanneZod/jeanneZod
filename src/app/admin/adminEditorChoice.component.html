@@ -1,8 +1,4 @@
-<app-adminProducts-editor>xoxox</app-adminProducts-editor>
-
-<div *ngIf="!ordersList && !productsList">
-    <span style="font-size:1.2rem">Merci de choisir une des catégories pour commencer le travail</span>
-</div>
+<div *ngIf="openboard == false">false</div>
 <div *ngIf="ordersList | async">
     <div *ngIf="(ordersList | async) !=null ">
         <h4>Total COMMANDES: {{ords.length}}</h4>
