@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Product } from '../model/product.model';
 import { StaticProducts } from '../model/product.repository';
 import { Cart } from '../model/cartDetail.model';
-import { Router, Routes } from '@angular/router';
+import { Router, Routes, ActivatedRoute } from '@angular/router';
 import { RestDataSource } from '../admin/authenticate.admin';
 import { AuthService } from '../model/auth.service';
 import { Client } from '../model/client.model';
@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 import {getProductsComponent} from './getProducts.component';
 import {getOrdersComponent} from './getOrders.component';
 @Component({
-    selector: 'app-administration-editor',
+    selector: 'app-administration-editor [xx]=',
     providers: [StaticProducts, AuthService, RestDataSource, LocalDate, DatePipe],
     templateUrl: './adminEditor.component.html'
 })
@@ -25,8 +25,11 @@ openboard: boolean;
         private auth: AuthService,
         private authenticate: RestDataSource,
         public client: Client,
+        private activatedRoute: ActivatedRoute,
         private order: Order) {
-           this.openboard = false;
+            if(this.activatedRoute.snapshot.url[0].path == 'editor'){
+                this.openboard = true;
+            }
         }
 
        

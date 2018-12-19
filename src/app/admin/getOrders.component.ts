@@ -8,7 +8,7 @@ import { AuthService } from '../model/auth.service';
 import { Client } from '../model/client.model';
 import { Order } from '../model/order.model';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import {AdminEditorComponent} from '../admin/adminEditor.component';
+
 
 
 @Component({
@@ -19,16 +19,14 @@ import {AdminEditorComponent} from '../admin/adminEditor.component';
 export class getOrdersComponent implements OnInit {
 ordersList: Observable<Order[]> ;
 ords: Order[];
-openboard = false;
+
 productsList ;
     constructor(private data: StaticProducts,
         public cart: Cart, private router: Router,
         private auth: AuthService,
         private authenticate: RestDataSource,
         private order: Order,
-         private adm:AdminEditorComponent,
         public client: Client) {
-            this.openboard = adm.openboard;
         }
 
 
@@ -36,7 +34,7 @@ productsList ;
         ngOnInit(){
             
             this.productsList = null;
-            this.openboard = true;
+
             if (this.client.connect === true && this.client.access === true) {
                  this.ordersList = this.authenticate.getOrders();
                  this.ordersList.subscribe(ords => this.ords = ords)

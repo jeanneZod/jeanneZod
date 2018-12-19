@@ -3,11 +3,11 @@ import { Observable } from 'rxjs/Observable';
 import { Product } from '../model/product.model';
 import { StaticProducts } from '../model/product.repository';
 import { Cart } from '../model/cartDetail.model';
-import { Router, Routes } from '@angular/router';
+import { Router, Routes,ActivatedRoute } from '@angular/router';
 import { RestDataSource } from '../admin/authenticate.admin';
 import { AuthService } from '../model/auth.service';
 import { Client } from '../model/client.model';
-import {AdminEditorComponent} from '../admin/adminEditor.component';
+
 
 
 @Component({
@@ -20,20 +20,21 @@ export class getProductsComponent implements OnInit{
 productsList: Observable<Product[]> ;
 prods:Product[];
 ordersList;
-openboard = false;
+openboard:boolean;
     constructor(private data: StaticProducts,
         public cart: Cart, private router: Router,
         private auth: AuthService,
         private authenticate: RestDataSource,
-        private adm:AdminEditorComponent,
+        private activatedRoute:ActivatedRoute,
         public client: Client) {
             
         }
 
         ngOnInit(){
-
+            if(this.activatedRoute.snapshot.url[0].path == 'products'){
+                this.openboard = false;
+            }
             this.ordersList = null;
-            this.openboard = true;
             if (this.client.connect === true && this.client.access === true) {
                 this.productsList = this.authenticate.getProducts();
                 this.productsList.subscribe(prods => this.prods = prods)
