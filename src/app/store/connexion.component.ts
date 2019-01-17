@@ -31,7 +31,9 @@ export class ConnexionComponent {
                this.errorMessage = 'Merci de vérifier vos informations';
             });
         }
-        this.errorMessage = 'Merci de remplir les champs';
+        else {
+            this.errorMessage = 'Merci de remplir les champs';
+        }
 
     }
 
@@ -41,6 +43,7 @@ export class ConnexionComponent {
         if (first.value === '' || second.value === '') {
             first.classList.add('is-invalid');
             second.classList.add('is-invalid');
+            console.log(client);
             return this.submitContinue = false;
         } else {
             return this.submitContinue = true;
